@@ -51,6 +51,7 @@ import Text.Show.Functions ()
 import Hledger
 import Hledger.Cli (HasCliOpts(..))
 import Hledger.UI.UIOptions
+import GHC.IO (unsafePerformIO)
 
 -- | hledger-ui's application state. This holds one or more stateful screens.
 -- As you navigate through screens, the old ones are saved in a stack.
@@ -137,7 +138,10 @@ data Screen =
 -- XXX check for ideas: https://github.com/jtdaugherty/brick/issues/379#issuecomment-1191993357
 
 -- | Error message to use in case statements adapting to the different Screen shapes.
-errorWrongScreenType = error' "handler called with wrong screen type, should not happen"
+errorWrongScreenType lbl =
+  unsafePerformIO $ do
+    -- threadDelay 2000000  -- delay to allow console output to be seen
+    error' $ unwords [lbl, "called with wrong screen type, should not happen"]
 
 -- | An item in the accounts screen's list of accounts and balances.
 data AccountsScreenItem = AccountsScreenItem {

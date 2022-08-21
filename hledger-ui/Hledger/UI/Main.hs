@@ -125,7 +125,7 @@ runBrickUi uopts@UIOpts{uoCliOpts=copts@CliOpts{inputopts_=_iopts,reportspec_=rs
 
     (scr, prevscrs) = case uoRegister uopts' of
       Nothing   -> (accountsScreen, [])
-      -- with --register, start on the register screen, and also put
+      -- with --register, start on the register screen, and also put'
       -- the accounts screen on the prev screens stack so you can exit
       -- to that as usual.
       Just apat -> (rsSetAccount acct False registerScreen, [ascr'])

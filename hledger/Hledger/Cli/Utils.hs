@@ -227,6 +227,9 @@ writeFileWithBackup f t = backUpFile f >> writeFile f t
 readFileStrictly :: FilePath -> IO T.Text
 readFileStrictly f = readFilePortably f >>= \s -> C.evaluate (T.length s) >> return s
 
+-- appendFileStrictly :: FilePath -> String -> IO ()
+-- appendFileStrictly f s = appendFile f s >> C.evaluate (length s) >> return ()
+
 -- | Back up this file with a (incrementing) numbered suffix, or give an error.
 backUpFile :: FilePath -> IO ()
 backUpFile fp = do

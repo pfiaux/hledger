@@ -318,3 +318,6 @@ screenEnter :: Day -> Screen -> UIState -> UIState
 screenEnter d scr ui = (sInit scr) d True $
                        pushScreen scr
                        ui
+
+-- screenEnter' :: Day -> Screen -> UIState -> EventM Name UIState ()
+-- screenEnter' d scr ui = put' $ (sInit scr) d True $ pushScreen scr ui
